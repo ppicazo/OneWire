@@ -3,8 +3,6 @@ This is just a mirror from [Teensyduino](http://www.pjrc.com/teensy/td_libs_OneW
 
 OneWire lets you access 1-wire devices made by Maxim/Dallas, such as temperature sensors and ibutton secure memory. For temperature sensors, the DallasTemperature library can be used in conjunction with this library.
 
-The DS18x20_Temperature has a known bug. Remove "unsigned" from the raw variable on line 88, for correct results below zero degrees Celsius!
-
 ## Hardware Requirements
 OneWire requires a single 4.7K pullup resistor, connected between the pin and +5 volts. Then just connect each 1-wire device to the pin and ground. Some 1-wire devices can also connect to power, or get their power from the signal wire. Please refer to the specifications for the 1-wire devices you are using.
 
@@ -23,6 +21,11 @@ Search for the next device. The addrArray is an 8 byte array. If a device is fou
 myWire.reset_search();
 ```
 Begin a new search. The next use of search will begin at the first device.
+
+```
+myWire.target_search(family_code);
+```
+Setup the search to find the device type 'family_code' on the next call to search(*newAddr) if it is present.
 
 ```
 myWire.reset();
